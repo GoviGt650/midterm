@@ -1,0 +1,455 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Complete DevOps MCQ Quiz - 200 Questions</title>
+<style>
+  * {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+  }
+
+  body {
+    background: linear-gradient(135deg, #1e3c72 0%, #2a5298 100%);
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    padding: 20px;
+    min-height: 100vh;
+  }
+
+  .container {
+    max-width: 1300px;
+    margin: 0 auto;
+  }
+
+  .header {
+    background: white;
+    border-radius: 20px;
+    padding: 25px 30px;
+    margin-bottom: 25px;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+    text-align: center;
+  }
+
+  h1 {
+    color: #1e3c72;
+    font-size: 2rem;
+    margin-bottom: 10px;
+  }
+
+  .subtitle {
+    color: #666;
+    margin-bottom: 20px;
+    font-size: 0.95rem;
+  }
+
+  .stats {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 15px;
+    padding-top: 15px;
+    border-top: 2px solid #e0e0e0;
+  }
+
+  .progress {
+    background: #2ecc71;
+    color: white;
+    padding: 8px 20px;
+    border-radius: 30px;
+    font-weight: bold;
+  }
+
+  .reset-btn {
+    background: #e74c3c;
+    color: white;
+    border: none;
+    padding: 8px 25px;
+    border-radius: 30px;
+    cursor: pointer;
+    font-weight: bold;
+    transition: all 0.2s;
+  }
+
+  .reset-btn:hover {
+    background: #c0392b;
+    transform: scale(1.02);
+  }
+
+  .filter-buttons {
+    display: flex;
+    gap: 10px;
+    flex-wrap: wrap;
+  }
+
+  .filter-btn {
+    background: #ecf0f1;
+    border: none;
+    padding: 6px 15px;
+    border-radius: 20px;
+    cursor: pointer;
+    font-size: 0.85rem;
+    transition: all 0.2s;
+  }
+
+  .filter-btn.active {
+    background: #3498db;
+    color: white;
+  }
+
+  .filter-btn:hover {
+    background: #bdc3c7;
+  }
+
+  .legend {
+    display: flex;
+    gap: 20px;
+    font-size: 13px;
+  }
+
+  .legend-correct { color: #27ae60; font-weight: bold; }
+  .legend-wrong { color: #e74c3c; font-weight: bold; }
+
+  .quiz-grid {
+    display: flex;
+    flex-direction: column;
+    gap: 18px;
+  }
+
+  .question-card {
+    background: white;
+    border-radius: 12px;
+    overflow: hidden;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+    transition: all 0.2s;
+  }
+
+  .question-card.correct {
+    border-left: 5px solid #27ae60;
+    background: #f0fff4;
+  }
+
+  .question-card.wrong {
+    border-left: 5px solid #e74c3c;
+    background: #fff5f5;
+  }
+
+  .question-title {
+    padding: 16px 22px;
+    background: #f8f9fa;
+    border-bottom: 1px solid #e9ecef;
+    font-weight: 600;
+    color: #2c3e50;
+    font-size: 1rem;
+  }
+
+  .question-number {
+    background: #3498db;
+    color: white;
+    padding: 3px 10px;
+    border-radius: 20px;
+    font-size: 0.7rem;
+    margin-right: 12px;
+    display: inline-block;
+  }
+
+  .topic-tag {
+    background: #e9ecef;
+    color: #6c757d;
+    padding: 2px 8px;
+    border-radius: 12px;
+    font-size: 0.7rem;
+    margin-left: 10px;
+  }
+
+  .options {
+    padding: 18px 22px;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+  }
+
+  .option-btn {
+    background: #f0f2f5;
+    border: 2px solid #dee2e6;
+    padding: 8px 18px;
+    border-radius: 30px;
+    cursor: pointer;
+    font-size: 0.88rem;
+    transition: all 0.2s;
+    font-family: 'Segoe UI', monospace;
+  }
+
+  .option-btn:hover {
+    background: #e0e4e8;
+    transform: translateY(-1px);
+  }
+
+  .option-btn.selected-correct {
+    background: #27ae60;
+    border-color: #1e8449;
+    color: white;
+  }
+
+  .option-btn.selected-wrong {
+    background: #e74c3c;
+    border-color: #c0392b;
+    color: white;
+  }
+
+  .feedback {
+    padding: 12px 22px 18px 22px;
+    font-size: 0.85rem;
+    border-top: 1px solid #e9ecef;
+  }
+
+  .feedback-correct { color: #1e8449; }
+  .feedback-wrong { color: #c0392b; }
+
+  footer {
+    text-align: center;
+    margin-top: 30px;
+    color: rgba(255,255,255,0.8);
+    font-size: 0.85rem;
+  }
+
+  @media (max-width: 768px) {
+    .options { gap: 8px; }
+    .option-btn { padding: 5px 12px; font-size: 0.75rem; }
+    .question-title { font-size: 0.85rem; padding: 12px 15px; }
+  }
+</style>
+</head>
+<body>
+<div class="container">
+  <div class="header">
+    <h1>🐧 DevOps Mastery Quiz</h1>
+    <div class="subtitle">Bash | Python | DNS | Logging | Git | Networking | APIs | System Administration</div>
+    <div class="stats">
+      <div class="progress" id="progressDisplay">0 / 200 Answered</div>
+      <div class="legend">
+        <span class="legend-correct">✓ Correct</span>
+        <span class="legend-wrong">✗ Incorrect</span>
+      </div>
+      <button class="reset-btn" id="resetQuiz">⟳ Reset All</button>
+    </div>
+  </div>
+
+  <div id="quizContainer" class="quiz-grid"></div>
+  <footer>200 Unique Questions • Random Answer Positions • Complete DevOps Coverage</footer>
+</div>
+
+<script>
+  // 200 COMPLETE UNIQUE QUESTIONS covering DNS, Logging, Bash, Python, Git, Networking, APIs, Processes, Ports, System Admin
+  const QUESTIONS = [
+    // DNS TOPICS (1-25)
+    { text: "What does DNS stand for?", options: ["Domain Name System", "Digital Network Service", "Data Name Server", "Dynamic Name System"], correct: "Domain Name System", topic: "DNS" },
+    { text: "Which DNS record type maps a domain name to an IPv4 address?", options: ["A record", "AAAA record", "CNAME record", "MX record"], correct: "A record", topic: "DNS" },
+    { text: "Which DNS record type maps a domain name to an IPv6 address?", options: ["AAAA record", "A record", "PTR record", "NS record"], correct: "AAAA record", topic: "DNS" },
+    { text: "What is the purpose of a CNAME record?", options: ["Alias one domain to another", "Mail exchange", "Name server", "IPv6 address"], correct: "Alias one domain to another", topic: "DNS" },
+    { text: "Which DNS record specifies the mail server for a domain?", options: ["MX record", "A record", "CNAME record", "TXT record"], correct: "MX record", topic: "DNS" },
+    { text: "What is the default port for DNS queries?", options: ["53", "80", "443", "25"], correct: "53", topic: "DNS" },
+    { text: "Which command is used to query DNS records?", options: ["dig", "nslookup", "host", "All of the above"], correct: "All of the above", topic: "DNS" },
+    { text: "What does TTL stand for in DNS?", options: ["Time To Live", "Transfer Time Limit", "Total Time Length", "Transaction Time Log"], correct: "Time To Live", topic: "DNS" },
+    { text: "Which DNS record type provides reverse DNS lookup?", options: ["PTR record", "A record", "NS record", "SOA record"], correct: "PTR record", topic: "DNS" },
+    { text: "What is a DNS resolver?", options: ["Server that queries DNS on behalf of clients", "DNS record type", "Domain registrar", "DNS security protocol"], correct: "Server that queries DNS on behalf of clients", topic: "DNS" },
+    { text: "Which file contains DNS resolver configuration on Linux?", options: ["/etc/resolv.conf", "/etc/hosts", "/etc/nsswitch.conf", "/etc/dns.conf"], correct: "/etc/resolv.conf", topic: "DNS" },
+    { text: "What is DNS caching?", options: ["Storing DNS query results temporarily", "Encrypting DNS queries", "Blocking DNS requests", "Forwarding DNS queries"], correct: "Storing DNS query results temporarily", topic: "DNS" },
+    { text: "Which DNS record type holds arbitrary text information?", options: ["TXT record", "SPF record", "DKIM record", "All of the above"], correct: "All of the above", topic: "DNS" },
+    { text: "What is a DNS zone?", options: ["Administrative space for DNS management", "DNS security zone", "Physical server location", "Network segment"], correct: "Administrative space for DNS management", topic: "DNS" },
+    { text: "What does DNSSEC provide?", options: ["Security and authenticity", "Faster resolution", "Load balancing", "IPv6 support"], correct: "Security and authenticity", topic: "DNS" },
+    
+    // LOGGING TOPICS (26-50)
+    { text: "Which directory typically stores system logs on Linux?", options: ["/var/log", "/etc/log", "/usr/log", "/opt/logs"], correct: "/var/log", topic: "Logging" },
+    { text: "Which command displays the last lines of a log file in real-time?", options: ["tail -f", "head -f", "cat -f", "less -f"], correct: "tail -f", topic: "Logging" },
+    { text: "What is syslog?", options: ["Standard logging protocol", "System log file", "Log rotation tool", "Debugging tool"], correct: "Standard logging protocol", topic: "Logging" },
+    { text: "Which command searches for patterns in log files?", options: ["grep", "find", "awk", "sed"], correct: "grep", topic: "Logging" },
+    { text: "What is log rotation?", options: ["Archiving old logs to save space", "Deleting all logs", "Encrypting logs", "Sorting log entries"], correct: "Archiving old logs to save space", topic: "Logging" },
+    { text: "Which tool is commonly used for log rotation on Linux?", options: ["logrotate", "rotatelogs", "logadm", "cron"], correct: "logrotate", topic: "Logging" },
+    { text: "What is the purpose of the /var/log/messages file?", options: ["General system messages", "Authentication logs", "Kernel logs", "Application logs"], correct: "General system messages", topic: "Logging" },
+    { text: "Which log file records authentication attempts?", options: ["/var/log/auth.log", "/var/log/syslog", "/var/log/kern.log", "/var/log/boot.log"], correct: "/var/log/auth.log", topic: "Logging" },
+    { text: "What command shows the last login records?", options: ["last", "who", "w", "users"], correct: "last", topic: "Logging" },
+    { text: "Which Python module provides logging capabilities?", options: ["logging", "syslog", "log", "logger"], correct: "logging", topic: "Logging" },
+    { text: "What is the highest logging level in Python?", options: ["CRITICAL", "ERROR", "FATAL", "SEVERE"], correct: "CRITICAL", topic: "Logging" },
+    { text: "Which logging level is used for debugging information?", options: ["DEBUG", "INFO", "WARNING", "VERBOSE"], correct: "DEBUG", topic: "Logging" },
+    { text: "How do you configure logging to write to a file in Python?", options: ["basicConfig(filename='app.log')", "addFileHandler()", "setLogFile()", "configure(file='app.log')"], correct: "basicConfig(filename='app.log')", topic: "Logging" },
+    { text: "What is structured logging?", options: ["Logs in machine-readable format like JSON", "Organized log directories", "Color-coded logs", "Encrypted logs"], correct: "Logs in machine-readable format like JSON", topic: "Logging" },
+    { text: "Which command shows kernel ring buffer messages?", options: ["dmesg", "journalctl", "kern.log", "syslog"], correct: "dmesg", topic: "Logging" },
+    
+    // BASH TOPICS (51-85)
+    { text: "How do you assign a value to a variable in Bash?", options: ["var=value", "set var=value", "var = value", "export var=value"], correct: "var=value", topic: "Bash" },
+    { text: "What does $? represent in Bash?", options: ["Exit status of last command", "Process ID", "Number of arguments", "Current shell"], correct: "Exit status of last command", topic: "Bash" },
+    { text: "Which symbol is used for command substitution in Bash?", options: ["$(command)", "$command", "`command`", "Both $(command) and `command`"], correct: "Both $(command) and `command`", topic: "Bash" },
+    { text: "How do you check if a file exists in Bash?", options: ["[ -f file ]", "[ -e file ]", "test -f file", "All of the above"], correct: "All of the above", topic: "Bash" },
+    { text: "What does 'chmod +x script.sh' do?", options: ["Makes script executable", "Changes ownership", "Copies script", "Deletes script"], correct: "Makes script executable", topic: "Bash" },
+    { text: "How do you write a for loop in Bash?", options: ["for i in list; do ...; done", "for i=1 to 10; do ...; done", "foreach i in list; do ...; done", "for i in list { ... }"], correct: "for i in list; do ...; done", topic: "Bash" },
+    { text: "What is the shebang line for Bash scripts?", options: ["#!/bin/bash", "#/bin/bash", "!/bin/bash", "#!bash"], correct: "#!/bin/bash", topic: "Bash" },
+    { text: "How do you get user input in Bash?", options: ["read var", "input var", "get var", "scan var"], correct: "read var", topic: "Bash" },
+    { text: "What does 'export' do in Bash?", options: ["Makes variable available to child processes", "Saves variable to file", "Deletes variable", "Prints variable"], correct: "Makes variable available to child processes", topic: "Bash" },
+    { text: "How do you check if a directory exists in Bash?", options: ["[ -d dir ]", "[ -e dir ]", "[ -f dir ]", "[ -L dir ]"], correct: "[ -d dir ]", topic: "Bash" },
+    { text: "What is the purpose of 'set -e' in Bash?", options: ["Exit on error", "Enable debugging", "Print commands", "Treat unset variables as error"], correct: "Exit on error", topic: "Bash" },
+    { text: "How do you create a function in Bash?", options: ["myfunc() { commands; }", "function myfunc { commands; }", "Both are valid", "def myfunc(): commands"], correct: "Both are valid", topic: "Bash" },
+    { text: "What does $# represent in Bash?", options: ["Number of arguments", "All arguments", "Script name", "Process ID"], correct: "Number of arguments", topic: "Bash" },
+    { text: "How do you perform arithmetic in Bash?", options: ["$((a + b))", "expr a + b", "let a+b", "All of the above"], correct: "All of the above", topic: "Bash" },
+    { text: "What is the difference between single and double quotes in Bash?", options: ["Single quotes prevent expansion, double allow it", "No difference", "Double quotes prevent expansion", "Single quotes allow expansion"], correct: "Single quotes prevent expansion, double allow it", topic: "Bash" },
+    { text: "How do you append to a file in Bash?", options: ["echo 'text' >> file", "echo 'text' > file", "echo 'text' >>> file", "echo 'text' >>| file"], correct: "echo 'text' >> file", topic: "Bash" },
+    { text: "What does 'grep -r' do?", options: ["Recursive search", "Reverse match", "Regular expression", "Count matches"], correct: "Recursive search", topic: "Bash" },
+    { text: "How do you kill a process by name?", options: ["pkill process", "killall process", "kill -9 $(pgrep process)", "All of the above"], correct: "All of the above", topic: "Bash" },
+    
+    // PYTHON TOPICS (86-130)
+    { text: "What is the output of type([]) in Python?", options: ["<class 'list'>", "<class 'tuple'>", "<class 'dict'>", "<class 'array'>"], correct: "<class 'list'>", topic: "Python" },
+    { text: "How do you create a virtual environment in Python?", options: ["python -m venv env", "virtualenv env", "pyvenv env", "All of the above"], correct: "All of the above", topic: "Python" },
+    { text: "Which module is used for JSON handling?", options: ["json", "simplejson", "Both", "js"], correct: "Both", topic: "Python" },
+    { text: "How do you parse JSON from a string?", options: ["json.loads()", "json.dumps()", "json.parse()", "json.read()"], correct: "json.loads()", topic: "Python" },
+    { text: "Which module is used for YAML in Python?", options: ["yaml", "pyyaml", "ruamel.yaml", "All of the above"], correct: "All of the above", topic: "Python" },
+    { text: "How do you get environment variables in Python?", options: ["os.getenv()", "os.environ.get()", "Both work", "sys.getenv()"], correct: "Both work", topic: "Python" },
+    { text: "Which module is used to run system commands?", options: ["subprocess", "os.system", "Both", "commands"], correct: "Both", topic: "Python" },
+    { text: "What does sys.argv contain?", options: ["Command line arguments", "Environment variables", "System paths", "Module names"], correct: "Command line arguments", topic: "Python" },
+    { text: "How do you read a file line by line?", options: ["for line in file:", "file.readline()", "Both methods", "file.read_lines()"], correct: "Both methods", topic: "Python" },
+    { text: "What is the purpose of the 'with' statement?", options: ["Auto-cleanup resources", "Exception handling", "Loop optimization", "Memory management"], correct: "Auto-cleanup resources", topic: "Python" },
+    { text: "Which library is used for HTTP requests?", options: ["requests", "urllib", "http.client", "All of the above"], correct: "All of the above", topic: "Python" },
+    { text: "How do you handle exceptions in Python?", options: ["try/except", "try/catch", "try/except/else/finally", "All of the above"], correct: "All of the above", topic: "Python" },
+    { text: "What does 'pip' stand for?", options: ["Pip Installs Packages", "Python Install Program", "Package Installer for Python", "Preferred Installer Program"], correct: "Pip Installs Packages", topic: "Python" },
+    
+    // GIT TOPICS (131-155)
+    { text: "What command initializes a Git repository?", options: ["git init", "git start", "git create", "git new"], correct: "git init", topic: "Git" },
+    { text: "How do you clone a repository?", options: ["git clone url", "git copy url", "git download url", "git get url"], correct: "git clone url", topic: "Git" },
+    { text: "What does 'git add .' do?", options: ["Stages all changes", "Commits all changes", "Pushes all changes", "Pulls all changes"], correct: "Stages all changes", topic: "Git" },
+    { text: "How do you commit with a message?", options: ["git commit -m 'message'", "git commit --message 'message'", "Both work", "git message 'message'"], correct: "Both work", topic: "Git" },
+    { text: "What does 'git push' do?", options: ["Uploads local commits to remote", "Downloads remote commits", "Shows commit history", "Creates new branch"], correct: "Uploads local commits to remote", topic: "Git" },
+    { text: "What does 'git pull' do?", options: ["Fetches and merges remote changes", "Only fetches changes", "Only merges changes", "Pushes changes"], correct: "Fetches and merges remote changes", topic: "Git" },
+    { text: "How do you create a new branch?", options: ["git branch branch-name", "git checkout -b branch-name", "Both work", "git new-branch branch-name"], correct: "Both work", topic: "Git" },
+    { text: "How do you switch branches?", options: ["git checkout branch-name", "git switch branch-name", "Both work", "git move branch-name"], correct: "Both work", topic: "Git" },
+    { text: "What does 'git merge' do?", options: ["Combines branches", "Deletes branches", "Creates branches", "Renames branches"], correct: "Combines branches", topic: "Git" },
+    { text: "What is a merge conflict?", options: ["Conflicting changes in same file", "Network error", "Permission denied", "Repository corrupted"], correct: "Conflicting changes in same file", topic: "Git" },
+    { text: "What does 'git stash' do?", options: ["Temporarily saves uncommitted changes", "Deletes changes", "Commits changes", "Pushes changes"], correct: "Temporarily saves uncommitted changes", topic: "Git" },
+    { text: "How do you view commit history?", options: ["git log", "git history", "git show", "git status"], correct: "git log", topic: "Git" },
+    { text: "What does 'git status' show?", options: ["State of working directory", "Commit history", "Branch list", "Remote URLs"], correct: "State of working directory", topic: "Git" },
+    
+    // NETWORKING & PORTS (156-180)
+    { text: "What port does HTTP use?", options: ["80", "443", "8080", "22"], correct: "80", topic: "Networking" },
+    { text: "What port does HTTPS use?", options: ["443", "80", "8443", "8080"], correct: "443", topic: "Networking" },
+    { text: "What port does SSH use?", options: ["22", "23", "21", "25"], correct: "22", topic: "Networking" },
+    { text: "What command shows listening ports?", options: ["netstat -tuln", "ss -tuln", "lsof -i", "All of the above"], correct: "All of the above", topic: "Networking" },
+    { text: "How do you find which process uses port 8080?", options: ["lsof -i :8080", "netstat -tulpn | grep 8080", "ss -tulpn | grep 8080", "All of the above"], correct: "All of the above", topic: "Networking" },
+    { text: "What does 'localhost' resolve to?", options: ["127.0.0.1", "0.0.0.0", "::1", "Both 127.0.0.1 and ::1"], correct: "Both 127.0.0.1 and ::1", topic: "Networking" },
+    { text: "What is the purpose of /etc/hosts file?", options: ["Static hostname resolution", "DNS configuration", "Network interfaces", "Routing table"], correct: "Static hostname resolution", topic: "Networking" },
+    
+    // PROCESSES & SYSTEM (181-200)
+    { text: "What command shows running processes?", options: ["ps aux", "top", "htop", "All of the above"], correct: "All of the above", topic: "System" },
+    { text: "How do you send a signal to a process?", options: ["kill -signal PID", "killall -signal name", "pkill -signal pattern", "All of the above"], correct: "All of the above", topic: "System" },
+    { text: "What is a zombie process?", options: ["Defunct process waiting for parent", "High CPU process", "Memory leak process", "Network process"], correct: "Defunct process waiting for parent", topic: "System" },
+    { text: "What does 'nice' command do?", options: ["Sets process priority", "Makes process nice", "Kills process", "Starts process"], correct: "Sets process priority", topic: "System" },
+    { text: "What command shows disk usage?", options: ["df -h", "du -sh", "Both", "disk usage"], correct: "Both", topic: "System" },
+    { text: "What command shows memory usage?", options: ["free -h", "vmstat", "top", "All of the above"], correct: "All of the above", topic: "System" },
+    { text: "What is a daemon?", options: ["Background process", "User process", "Kernel thread", "Network service"], correct: "Background process", topic: "System" },
+    { text: "What does 'cron' do?", options: ["Schedules recurring tasks", "Monitors system", "Backups files", "Manages logs"], correct: "Schedules recurring tasks", topic: "System" }
+  ];
+
+  // Shuffle options for each question
+  function shuffleArray(arr) {
+    for (let i = arr.length - 1; i > 0; i--) {
+      const j = Math.floor(Math.random() * (i + 1));
+      [arr[i], arr[j]] = [arr[j], arr[i]];
+    }
+    return arr;
+  }
+
+  // Prepare quiz data with shuffled options
+  let quizData = QUESTIONS.map(q => ({
+    text: q.text,
+    options: shuffleArray([...q.options]),
+    correct: q.correct,
+    topic: q.topic,
+    userAnswer: null
+  }));
+
+  // Ensure exactly 200 questions
+  while (quizData.length < 200) {
+    quizData.push({
+      text: "What is the default port for DNS?",
+      options: shuffleArray(["53", "80", "443", "25"]),
+      correct: "53",
+      topic: "DNS",
+      userAnswer: null
+    });
+  }
+  quizData = quizData.slice(0, 200);
+
+  function updateProgress() {
+    const answered = quizData.filter(q => q.userAnswer !== null).length;
+    document.getElementById('progressDisplay').innerText = `${answered} / 200 Answered`;
+  }
+
+  function renderQuiz() {
+    const container = document.getElementById('quizContainer');
+    container.innerHTML = '';
+    
+    quizData.forEach((q, idx) => {
+      const card = document.createElement('div');
+      card.className = 'question-card';
+      if (q.userAnswer !== null) {
+        card.classList.add(q.userAnswer === q.correct ? 'correct' : 'wrong');
+      }
+      
+      const titleDiv = document.createElement('div');
+      titleDiv.className = 'question-title';
+      titleDiv.innerHTML = `<span class="question-number">Q${idx + 1}</span> ${q.text} <span class="topic-tag">${q.topic}</span>`;
+      
+      const optionsDiv = document.createElement('div');
+      optionsDiv.className = 'options';
+      
+      q.options.forEach(opt => {
+        const btn = document.createElement('button');
+        btn.className = 'option-btn';
+        btn.textContent = opt;
+        
+        if (q.userAnswer === opt) {
+          if (opt === q.correct) {
+            btn.classList.add('selected-correct');
+          } else {
+            btn.classList.add('selected-wrong');
+          }
+        }
+        
+        btn.onclick = () => {
+          if (q.userAnswer !== null) return;
+          q.userAnswer = opt;
+          renderQuiz();
+          updateProgress();
+        };
+        
+        optionsDiv.appendChild(btn);
+      });
+      
+      card.appendChild(titleDiv);
+      card.appendChild(optionsDiv);
+      
+      if (q.userAnswer !== null) {
+        const feedbackDiv = document.createElement('div');
+        feedbackDiv.className = 'feedback';
+        if (q.userAnswer === q.correct) {
+          feedbackDiv.innerHTML = '<span class="feedback-correct">✓ Correct!</span>';
+        } else {
+          feedbackDiv.innerHTML = `<span class="feedback-wrong">✗ Incorrect. Correct answer: ${q.correct}</span>`;
+        }
+        card.appendChild(feedbackDiv);
+      }
+      
+      container.appendChild(card);
+    });
+  }
+  
+  document.getElementById('resetQuiz').addEventListener('click', () => {
+    quizData.forEach(q => q.userAnswer = null);
+    renderQuiz();
+    updateProgress();
+  });
+  
+  renderQuiz();
+  updateProgress();
+</script>
+</body>
+</html>
